@@ -25,3 +25,7 @@ def get_model():
     m = ConvBnReluModel()
     m.eval()
     return m
+
+
+def get_layers_to_fuse():
+    return [["conv", "bn", "relu"]]
