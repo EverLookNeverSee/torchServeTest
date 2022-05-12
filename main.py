@@ -29,3 +29,12 @@ def get_model():
 
 def get_layers_to_fuse():
     return [["conv", "bn", "relu"]]
+
+
+model = get_model()
+layers = get_layers_to_fuse()
+f = torch.quantization.fuse_modules(model, layers, inplace=False)
+types_to_quantize = {torch.nn.Conv2d, torch.nn.BatchNorm2d, torch.nn.ReLU}
+q = torch.quantization.quantize_dynamic(f, types_to_quantize, dtype=torch.qint8)
+s = torch.jit.script(q)
+torch.jit.save(s, "opt_model.pt")
