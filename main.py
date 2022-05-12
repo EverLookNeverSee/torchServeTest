@@ -19,3 +19,9 @@ class ConvBnReluModel(torch.nn.Module):
         x = self.bn(x)
         x = self.relu(x)
         return x
+
+
+def get_model():
+    m = ConvBnReluModel()
+    m.eval()
+    return m
