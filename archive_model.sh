@@ -1,3 +1,5 @@
+#!/bin/bash
+
 torch-model-archiver --model-name resnet34 \
 --version 0.0.1 \
 --serialized-file resnet34.pt \
